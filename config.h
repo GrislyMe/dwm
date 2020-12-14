@@ -19,7 +19,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5" };
+static const char *tags[] = { "1", "2", "3", "4", "5", "ctl"};
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -61,6 +61,10 @@ static const char *roficmd[] = { "rofi", "-show", "run" };
 static const char *termcmd[]  = { "st", NULL };
 static const char *flameshotGui[]  = { "flameshot", "gui", NULL };
 static const char *switchWindow[]  = { "rofi", "-show", "window", NULL };
+static const char *mute[] = { "pactl", "set-sink-mute", "0", "toggle", NULL};
+static const char *volume_up[] = { "pactl", "set-sink-volume", "0", "+5%", NULL };
+static const char *volume_down[] = { "pactl", "set-sink-volume", "0", "-5%", NULL };
+static const char *muteMic[] = { "pactl", "set-source-mute", "1", "toggle", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -98,6 +102,10 @@ static Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	{ MODKEY|ShiftMask,             XK_s,      spawn,           {.v = flameshotGui} },
+	{ MODKEY,                       XK_F1,     spawn,           {.v = mute} },
+	{ MODKEY,                       XK_F3,     spawn,           {.v = volume_up} },
+	{ MODKEY,                       XK_F2,     spawn,           {.v = volume_down} },
+	{ MODKEY,                       XK_F4,     spawn,           {.v = muteMic} },
 };
 
 /* button definitions */
